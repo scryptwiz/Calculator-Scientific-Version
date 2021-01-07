@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelvis Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="bootstrap-4.5.0-dist/css/bootstrap.min.css">
+</head>
+
+<body onload="initClock()">
+    <div class="calculator-shadow mt-5 mt-md-2">
+        <div class="calculator-panels">
+
+<!-- branding-area -->
+            <span class="calculator-brand">
+                <p class="calculator-title">JOINUS</p>
+                <div class="datetime">
+                    <div class="date">
+                        <span id="dayname">Day</span>,
+                        <span id="month">Month</span>,
+                        <span id="daynm">00</span>,
+                        <span id="year">year</span>
+                    </div>
+                    <div class="time">
+                        <span id="hour">00</span>:
+                        <span id="minutes">00</span>:
+                        <span id="seconds">00</span>
+                        <span id="period">AM</span>
+                    </div>
+                </div>
+            </span>
+            <p class="calculator-subtitle text-center">Scientific Calculator</p>
+
+<!-- calculator-screen -->
+            <div class="calculator-screen">
+                <div id="input">
+                    
+                </div>
+
+                <div id="output">
+                    0
+                </div>
+            </div>
+
+<!-- rows 1 -->
+            <div class="row1">
+                <div class="col1">
+                    <p class="buttons-name1">SHIFT</p>
+                    <button class="smallest-button" id="sift" onclick="sift()"></button>
+                </div>
+                
+                <div class="col2">
+                    <p class="buttons-name2">ALPHA</p>
+                    <button class="smallest-button"></button>
+                </div>
+
+                <div class="col3">
+                    <p class="buttons-name3">RELAY</p>
+                    <div class="smallest-relay-button">
+
+                    </div>
+                </div>
+
+                <div class="col2">
+                    <p class="buttons-name2">MODE</p>
+                    <button class="smallest-button"></button>
+                </div>
+
+                <div class="col2">
+                    <button class="smallest-button11" id="on" onclick="On()">ON</button>
+                </div>
+            </div>
+
+<!-- rows 2 -->
+            <div class="row2">
+                <div class="col1-1">
+                    <p class="buttons-name-row2">X!</p>
+                    <button class="smallest-button1">X!</button>
+                </div>
+
+                <div class="col5">
+                    <p class="buttons-name-row2">nPr</p>
+                    <button class="smallest-button1">nCr</button>
+                </div>
+
+                <div class="col4">
+                    <p class="buttons-name-row2">Rec(</p>
+                    <button class="smallest-button1">Pol(</button>
+                </div>
+
+                <div class="col5">
+                    <p class="buttons-name-row2">∛</p>
+                    <button class="smallest-button1">x^(-3)</button>
+                </div>
+            </div>
+<!-- row 3 -->
+            <div class="row3">
+                <div class="col1-1">
+                    <p class="buttons-name-row2">d/c</p>
+                    <button class="smallest-button1">ab/c</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row3">.</p>
+                    <button class="smallest-button1" id="sqrt" onclick="sayope('√(')">√</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row3">.</p>
+                    <button class="smallest-button1">x^-2</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row2">x√</p>
+                    <button class="smallest-button1" id="powr" onclick="sayope('^')">^</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row2">10^x</p>
+                    <button class="smallest-button1" id="char" onclick="sayope('log(')">log</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">e</p>
+                    <button class="smallest-button1">In</button>
+                </div>
+            </div>
+
+<!-- row 4 -->
+            <div class="row3">
+                <div class="col1-1">
+                    <p class="buttons-name-row4">A</p>
+                    <button class="smallest-button1">(-)</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row3">.</p>
+                    <button class="smallest-button1">.,,,</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">C</p>
+                    <button class="smallest-button1">hyp</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">D</p>
+                    <button class="smallest-button1"  id="sin" onclick="sayope('sin(')">sin</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">E</p>
+                    <button class="smallest-button1" id="cos"  onclick="sayope('cos(')">cos</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">F</p>
+                    <button class="smallest-button1" id="tan"  onclick="sayope('tan(')">tan</button>
+                </div>
+            </div>
+
+<!-- row 5 -->
+            <div class="row3">
+                <div class="col1-1">
+                    <p class="buttons-name-row2">STO</p>
+                    <button class="smallest-button1">RCL</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row2">←</p>
+                    <button class="smallest-button1">ENG</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row3">.</p>
+                    <button class="smallest-button1" id="brac" onclick="fig('(')">(</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">X</p>
+                    <button class="smallest-button1" id="brac" onclick="fig(')')">)</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">Y</p>
+                    <button class="smallest-button1">,</button>
+                </div>
+
+                <div class="col6">
+                    <p class="buttons-name-row4">M</p>
+                    <button class="smallest-button1">M+</button>
+                </div>
+            </div>
+
+<!-- row 6 -->
+            <div class="row6">
+                <div class="col1-1">
+                    <button class="smallest-button2" id="num" onclick="fig('7')">7</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('8')">8</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('9')">9</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button3" id="del" onclick="del()">DEL</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button3" id="AC" onclick="ac()">AC</button>
+                </div>
+            </div>
+
+<!-- row 7 -->
+            <div class="row6">
+                <div class="col1-1">
+                    <button class="smallest-button2" id="num" onclick="fig('4')">4</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('5')">5</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('6')">6</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="operation" onclick="opp('*')">X</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="operation" onclick="opp('/')">÷</button>
+                </div>
+            </div>
+
+<!-- row 8 -->
+            <div class="row6">
+                <div class="col1-1">
+                    <button class="smallest-button2" id="num" onclick="fig('1')">1</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('2')">2</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('3')">3</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="operation" onclick="opp('+')">+</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="operation" onclick="opp('-')">-</button>
+                </div>
+            </div>
+
+<!-- row 9 -->
+            <div class="row6">
+                <div class="col1-1">
+                    <button class="smallest-button2" id="num" onclick="fig('0')">0</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('.')">.</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="num" onclick="fig('e')">EXP</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="ans" onclick="answer()" >ANS</button>
+                </div>
+
+                <div class="col6">
+                    <button class="smallest-button2" id="eqaul" onclick="eqaul()">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js">
+    </script>
+</body>
+
+</html>
